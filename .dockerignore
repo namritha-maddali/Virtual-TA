@@ -1,0 +1,7 @@
+venv
+__pycache__
+auth.json
+data
+docs
+.env
+*.ipynb
