@@ -1,18 +1,27 @@
-# app.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from parse_input import get_answer, load_request_payload
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or restrict to promptfoo server origin
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve frontend files (index.html etc.) from the 'frontend' folder
+app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")
+
+@app.get("/")
+def serve_index():
+    return FileResponse("frontend/index.html")
+
 
 class QuestionPayload(BaseModel):
     question: str
@@ -23,10 +32,11 @@ async def answer(payload: QuestionPayload):
     try:
         question, image = load_request_payload(payload.dict())
         result = get_answer(question, image)
+        print(result)
         return result
     except Exception as e:
         return {"error": str(e)}
 
-@app.get("/")
-def root():
-    return {"message": "TDS Virtual TA is up!"}
+# @app.get("/")
+# def root():
+#     return {"message": "TDS Virtual TA is up!"}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TDS Tadashi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Ask Tadashi!</h2>
+    <p class="subheading">
+      Tadashi is a TDS Virtual TA trained on Jan 2025 term content from the official TDS website and Discourse.
+    </p>
+
+    <label for="question">Question:</label><br>
+    <textarea id="question" rows="4" cols="50" placeholder="Type your question here..."></textarea><br><br>
+
+    <label for="image">Upload an image (optional):</label><br>
+    <input type="file" id="image" accept="image/*"><br><br>
+
+    <button onclick="getAnswer()">Get Answer</button>
+
+    <h3>Answer:</h3>
+    <div id="response"></div>
+  </div>
+</body>
+</html>

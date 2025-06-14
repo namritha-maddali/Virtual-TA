@@ -54,7 +54,7 @@ def handle_with_vlm(question, image, db):
         Pay attention to what's mentioned in the VLM's output and correlate it to the asked question.
 
         Return your answer as a JSON object with exactly two keys:
-        1. "answer" (string) - A clear, complete explanation, integrating the VLM's response.
+        1. "answer" (string) - A clear, complete explanation which is concise (do not mention context anywhere here)
         2. "links" (list) - Each item is a dictionary with keys "url" and "text".
 
         Output Format  (no need to give introduction and conclusion before the json output):
