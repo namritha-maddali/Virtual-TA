@@ -15,14 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve frontend files (index.html etc.) from the 'frontend' folder
-app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")
-
-@app.get("/")
-def serve_index():
-    return FileResponse("frontend/index.html")
-
-
 class QuestionPayload(BaseModel):
     question: str
     image: Optional[str] = None
@@ -37,6 +29,6 @@ async def answer(payload: QuestionPayload):
     except Exception as e:
         return {"error": str(e)}
 
-# @app.get("/")
-# def root():
-#     return {"message": "TDS Virtual TA is up!"}
+@app.get("/")
+def root():
+    return {"message": "TDS Virtual TA is up!"}

@@ -6,7 +6,7 @@ import json
 # from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from groq import Groq
 import moondream as md
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 
 '''
@@ -20,8 +20,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 '''
 
-if os.environ.get("RENDER") is None:
-    load_dotenv()
+# load_dotenv()
     
 moondream_api = os.getenv("MOONDREAM_API")
 model = md.vl(api_key=moondream_api)
