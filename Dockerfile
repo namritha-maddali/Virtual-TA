@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 # for libvips to support pyvips
 RUN apt-get update && \
