@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: tadashi-tds-virtual-ta
+    env: docker
+    repo: https://github.com/namritha-maddali/Virtual-TA
+    branch: main
+    plan: free
