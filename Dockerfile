@@ -3,7 +3,7 @@ FROM python:3.10-slim
 # for libvips to support pyvips
 RUN apt-get update && \
     apt-get install -y libvips build-essential && \
-    apt-get clean \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
