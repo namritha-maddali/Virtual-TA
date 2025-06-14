@@ -5,7 +5,8 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-load_dotenv()
+if os.environ.get("RENDER") is None:
+    load_dotenv()
 groq_api = os.getenv("GROQ_API")
 
 # embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
