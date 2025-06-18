@@ -35,6 +35,6 @@ async def answer(payload: QuestionPayload):
     except Exception as e:
         return {"error": str(e)}
 
-@app.get("/")
+@app.get("/test")
 def root():
     return {"message": "Tadashi (TDS TA) works guys!"}

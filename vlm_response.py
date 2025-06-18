@@ -52,7 +52,7 @@ def handle_with_vlm(question, image, db):
         Pay attention to what's mentioned in the VLM's output and corelate it to the asked question.
 
         Return your answer as a JSON object ONLY with exactly two keys:
-        1. "answer" (string) - A clear, complete explanation which is concise and natural, as if a human is answering
+        1. "answer" (string) - A clear, complete explanation which is concise and natural, as if a human is answering  (do not say the word context)
         2. "links" (list) - Each item is a dictionary with keys "url" and "text" (the URL should be from the context)
         
         IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.  And do not use markdown in the answers
@@ -69,7 +69,7 @@ def handle_with_vlm(question, image, db):
             ]
         }}
         Do not include escape characters. Return the JSON directly.
-        """
+    """
 
     try:
         llm_response = groq_client.chat.completions.create(
