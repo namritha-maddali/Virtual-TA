@@ -1,17 +1,23 @@
-document.getElementById("image").addEventListener("change", function (event) {
-  const file = event.target.files[0];
+document.addEventListener("DOMContentLoaded", () => {
+  const imageInput = document.getElementById("image");
   const preview = document.getElementById("preview");
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      preview.src = e.target.result;
-      preview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  } else {
-    preview.src = "";
-    preview.style.display = "none";
+  if (imageInput && preview) {
+    imageInput.addEventListener("change", function (event) {
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+        preview.style.display = "none";
+      }
+    });
   }
 });
 
@@ -38,7 +44,7 @@ async function getAnswer() {
   responseDiv.innerHTML = "<p><i>Tadashi is thinking...</i></p>";
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/", {
+    const res = await fetch("https://nomri-Tadashi-TDS-TA.hf.space/api/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

@@ -51,14 +51,14 @@ def handle_with_vlm(question, image, db):
         are referenced in the context or would be useful for further reading, include them and provide an explanation on them.
         Pay attention to what's mentioned in the VLM's output and corelate it to the asked question.
 
-        Return your answer as a JSON object with exactly two keys:
+        Return your answer as a JSON object ONLY with exactly two keys:
         1. "answer" (string) - A clear, complete explanation which is concise and natural, as if a human is answering
         2. "links" (list) - Each item is a dictionary with keys "url" and "text" (the URL should be from the context)
         
-        IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.
+        IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.  And do not use markdown in the answers
         You can use stuff from the internet as reference and provide more information to the students too. But stick to the context as much as possible.
         
-        Output Format (no need to give introduction and conclusion before the json output):
+        Output Format **ONLY JSON NOTHING ELSE**:
         {{
             "answer": "answer to the question ...",
             "links": [
@@ -68,6 +68,7 @@ def handle_with_vlm(question, image, db):
                 }}
             ]
         }}
+        Do not include escape characters. Return the JSON directly.
         """
 
     try:
@@ -97,7 +98,7 @@ def handle_with_vlm(question, image, db):
         print(f"Raw LLM response: {content if 'content' in locals() else 'No LLM response.'}")
         final_answer = vlm_answer
         if 'content' in locals() and content:
-            final_answer += "\n\n(Further LLM processing: " + content + ")"
+            final_answer += content
         
         return {
             "answer": final_answer.strip(),

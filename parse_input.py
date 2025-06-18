@@ -1,3 +1,7 @@
+import os
+os.environ["HF_HOME"] = "/tmp/.hf_cache"
+os.makedirs("/tmp/.hf_cache", exist_ok=True)
+
 import base64
 from PIL import Image
 from io import BytesIO
@@ -5,10 +9,23 @@ from langchain_community.vectorstores import FAISS
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from vlm_response import handle_with_vlm
 from llm_rag import handle_with_llm_rag
+from huggingface_hub import hf_hub_download
+
+faiss_index_path = hf_hub_download(
+    repo_id="nomri/Tadashi-TDS-TA",
+    filename="data/faiss/index.faiss",
+    repo_type="space"
+)
+
+pkl_path = hf_hub_download(
+    repo_id="nomri/Tadashi-TDS-TA",
+    filename="data/faiss/index.pkl",
+    repo_type="space"
+)
 
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 db = FAISS.load_local(
-    "data/faiss",
+    folder_path=os.path.dirname(faiss_index_path),
     embeddings=embedding_model,
     index_name="index",
     allow_dangerous_deserialization=True
@@ -30,3 +47,4 @@ def get_answer(question, image=None):
         return handle_with_vlm(question, image, db)
     else:
         return handle_with_llm_rag(question, db)
+    
