@@ -36,7 +36,6 @@ def load_json_posts(path):
     return docs
 
 # === CHUNKING ===
-# === CHUNKING ===
 def chunk_documents(docs, chunk_size=CHUNK_SIZE):
     chunks = []
     for doc in docs:
@@ -44,8 +43,10 @@ def chunk_documents(docs, chunk_size=CHUNK_SIZE):
         for i in range(0, len(words), chunk_size):
             chunk = " ".join(words[i:i + chunk_size])
             if len(chunk.split()) > 5:
+                # 👇 Embed the source URL in the actual text content
+                page_content_with_url = f"{chunk}\n(Source: {doc['url']})"
                 chunks.append(Document(
-                    page_content=chunk,
+                    page_content=page_content_with_url,
                     metadata={"source": doc["url"]}
                 ))
     return chunks

@@ -23,19 +23,20 @@ def handle_with_llm_rag(question, db):
         Based on the context below, answer the student question strictly using the available information. If relevant links (e.g., Discourse posts or site URLs) are referenced in the context or needed for further reading, include them.
 
         Return your answer as a JSON object with exactly two keys:
-        1. "answer" (string) - A clear, complete explanation which is concise (do not mention context anywhere here)
+        1. "answer" (string) - A clear, complete explanation which is concise and natural, as if a human is answering
         2. "links" (list) - Each item is a dictionary with keys "url" and "text".
 
         Student Question: {question}
         
         Context for answering the question: {context}
 
-        Output Format:
+        IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.
+        Output Format (no need to give introduction and conclusion before the json output):
         {{
             "answer": "answer to the question ...",
             "links": [
                 {{
-                    "url": "https://...",
+                    "url": "..." (this link MUST be present in the context above; do NOT make up or invent any links),,
                     "text": "explain how this link is useful ..."
                 }}
             ]

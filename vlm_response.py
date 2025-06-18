@@ -1,6 +1,3 @@
-from PIL import Image
-import base64
-import io
 import json
 # from langchain_community.vectorstores import FAISS
 # from langchain_huggingface.embeddings import HuggingFaceEmbeddings
@@ -21,7 +18,6 @@ model = AutoModelForCausalLM.from_pretrained(
 '''
 
 # load_dotenv()
-    
 moondream_api = os.getenv("MOONDREAM_API")
 model = md.vl(api_key=moondream_api)
 
@@ -38,6 +34,7 @@ def handle_with_vlm(question, image, db):
 
     # 2. get just the answer from question and context. 
     vlm_answer = model.query(image, "Transcribe the text in natural reading order")['answer'].strip()
+    print("moondream works", f"\n{vlm_answer}")
 
     # 3. Combine VLM's answer, original question, and context for the LLM
     llm_rag_prompt = f"""
@@ -46,24 +43,25 @@ def handle_with_vlm(question, image, db):
         A student asked the following question: "{question}"
         This question has been asked along with an image which has this text (given by a VLM): "{vlm_answer}"
 
-        Additionally, here is some relevant course context:
+        Additionally, here is some relevant course context with respect to which you should answer:
         {context}
 
         Based on the student's original question, the VLM's OCR output, and the provided course context,
         generate a clear, complete explanation. If relevant links (e.g: Discourse posts or site URLs)
         are referenced in the context or would be useful for further reading, include them and provide an explanation on them.
-        Pay attention to what's mentioned in the VLM's output and correlate it to the asked question.
+        Pay attention to what's mentioned in the VLM's output and corelate it to the asked question.
 
         Return your answer as a JSON object with exactly two keys:
-        1. "answer" (string) - A clear, complete explanation which is concise (do not mention context anywhere here)
-        2. "links" (list) - Each item is a dictionary with keys "url" and "text".
-
-        Output Format  (no need to give introduction and conclusion before the json output):
+        1. "answer" (string) - A clear, complete explanation which is concise and natural, as if a human is answering
+        2. "links" (list) - Each item is a dictionary with keys "url" and "text" (the URL should be from the context)
+        
+        IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.
+        Output Format (no need to give introduction and conclusion before the json output):
         {{
             "answer": "answer to the question ...",
             "links": [
                 {{
-                "url": "https://...",
+                "url": "..." (this link MUST be present in the context above; do NOT make up or invent any links),
                 "text": "explain how this link is useful ..."
                 }}
             ]
@@ -76,11 +74,12 @@ def handle_with_vlm(question, image, db):
                 {"role": "system", "content": "You are a helpful and structured assistant that outputs valid JSON."},
                 {"role": "user", "content": llm_rag_prompt}
             ],
-            model="llama3-70b-8192", # Or whatever model you prefer for JSON generation
+            model="llama3-70b-8192",
             temperature=0.1,
             seed=700
         )
-
+        
+        print("llm works")
         content = llm_response.choices[0].message.content.strip()
         parsed = json.loads(content)
 
@@ -94,9 +93,8 @@ def handle_with_vlm(question, image, db):
     except (json.JSONDecodeError, ValueError) as e:
         print(f"Warning: LLM output was not perfect JSON or missing keys. Error: {e}")
         print(f"Raw LLM response: {content if 'content' in locals() else 'No LLM response.'}")
-        # Fallback if LLM fails to produce perfect JSON
-        final_answer = vlm_answer # Start with VLM's direct answer
-        if 'content' in locals() and content: # If LLM produced some content, append it
+        final_answer = vlm_answer
+        if 'content' in locals() and content:
             final_answer += "\n\n(Further LLM processing: " + content + ")"
         
         return {

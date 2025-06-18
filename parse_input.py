@@ -26,11 +26,7 @@ def load_request_payload(payload: dict):
     return question, image
 
 def get_answer(question, image=None):
-
     if image:
         return handle_with_vlm(question, image, db)
     else:
         return handle_with_llm_rag(question, db)
-
-
-
