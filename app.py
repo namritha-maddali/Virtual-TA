@@ -15,7 +15,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+app.mount("/static", StaticFiles(directory="frontend", html=True), name="static")
+
+@app.get("/")
+def serve_index():
+    return FileResponse("frontend/index.html")
 
 class QuestionPayload(BaseModel):
     question: str
@@ -31,6 +35,6 @@ async def answer(payload: QuestionPayload):
     except Exception as e:
         return {"error": str(e)}
 
-# @app.get("/")
-# def root():
-#     return {"message": "TDS Virtual TA is up!"}
+@app.get("/")
+def root():
+    return {"message": "Tadashi (TDS TA) works guys!"}
