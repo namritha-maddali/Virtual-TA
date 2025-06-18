@@ -19,13 +19,13 @@ How to ask Tadashi questions:
 
 ## A few examples: 
 A question without any images - 
+
 ![image](https://github.com/user-attachments/assets/47dcc0c2-d5d6-4981-9191-83f89ac61c55)
 
 
 A question along with an image - 
+
 ![image](https://github.com/user-attachments/assets/640a2297-3e39-4c17-bd85-f2aa70fdab10)
 
-
-Tadashi is hosted on HuggingFace Spaces: https://huggingface.co/spaces/nomri/Tadashi-TDS-TA/tree/main
 
 _Disclaimer: his data is limited to the Jan'25 term_
