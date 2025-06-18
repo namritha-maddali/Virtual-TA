@@ -31,6 +31,8 @@ def handle_with_llm_rag(question, db):
         Context for answering the question: {context}
 
         IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.
+        You can use stuff from the internet as reference and provide more information to the students too. But stick to the context as much as possible.
+        
         Output Format (no need to give introduction and conclusion before the json output):
         {{
             "answer": "answer to the question ...",

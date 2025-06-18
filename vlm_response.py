@@ -43,7 +43,7 @@ def handle_with_vlm(question, image, db):
         A student asked the following question: "{question}"
         This question has been asked along with an image which has this text (given by a VLM): "{vlm_answer}"
 
-        Additionally, here is some relevant course context with respect to which you should answer:
+        Additionally, here is some relevant course context which you can use:
         {context}
 
         Based on the student's original question, the VLM's OCR output, and the provided course context,
@@ -56,6 +56,8 @@ def handle_with_vlm(question, image, db):
         2. "links" (list) - Each item is a dictionary with keys "url" and "text" (the URL should be from the context)
         
         IMPORTANT: Only use URLs that are **explicitly mentioned** in the provided context. Do NOT invent links.
+        You can use stuff from the internet as reference and provide more information to the students too. But stick to the context as much as possible.
+        
         Output Format (no need to give introduction and conclusion before the json output):
         {{
             "answer": "answer to the question ...",
