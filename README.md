@@ -7,7 +7,7 @@ Got doubts regarding TDS? Why fear when Tadashi is here! 🎀
 
 Tadashi uses the official TDS website and the content from the Discourse posts with the tag "tds" to answer your questions, which he does in a concise and digestable way along with some links to the relevant content to give you some more insights!
 
-###**Chat with him here: https://huggingface.co/spaces/nomri/Tadashi-TDS-TA **
+### **Chat with him here: https://huggingface.co/spaces/nomri/Tadashi-TDS-TA **
 (he is hosted on free tier of huggingface spaces. so, if the space has become inactive, it may take a minute or two to start.)
 How to ask Tadashi questions:
 - Enter your question in the text area
