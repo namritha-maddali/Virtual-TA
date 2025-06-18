@@ -4,25 +4,33 @@
   <meta charset="UTF-8">
   <title>TDS Tadashi</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="robo.png" type="image/png">
   <script src="script.js"></script>
 </head>
 <body>
   <div class="container">
-    <h2>Ask Tadashi!</h2>
-    <p class="subheading">
-      Tadashi is a TDS Virtual TA trained on Jan 2025 term content from the official TDS website and Discourse.
+    <h2 class="center-text">Meet Tadashi! 🤖🎓</h2>
+    <p class="center-text" id="subheading">
+      Tadashi is your <strong>friendly neighbourhood virtual teaching assistant</strong> for the course "Tools in Data Science" (from IITM's Diploma in Data Science).<br>
+      <br>Ask any question (with or without a picture) and get answers instantly :) <br>
+
+      <span class="disclaimer">
+        Disclaimer: Tadashi gets his information from the Jan 2025 term content of TDS website and Discourse.
+      </span>
     </p>
 
-    <label for="question">Question:</label><br>
+    <label for="question" class="content">Question:</label><br>
     <textarea id="question" rows="4" cols="50" placeholder="Type your question here..."></textarea><br><br>
 
-    <label for="image">Upload an image (optional):</label><br>
+    <label for="image" class="content">Upload an image (optional):</label><br>
     <input type="file" id="image" accept="image/*"><br><br>
 
     <button onclick="getAnswer()">Get Answer</button>
 
-    <h3>Answer:</h3>
+    <h3 class="content">Answer:</h3>
     <div id="response"></div>
   </div>
+
+  <div class="watermark">© namri · IIT Madras'25</div>
 </body>
 </html>

@@ -1,3 +1,20 @@
+document.getElementById("image").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById("preview");
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+    preview.style.display = "none";
+  }
+});
+
 async function getAnswer() {
   const question = document.getElementById("question").value;
   const imageInput = document.getElementById("image").files[0];
@@ -21,7 +38,7 @@ async function getAnswer() {
   responseDiv.innerHTML = "<p><i>Tadashi is thinking...</i></p>";
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/", {  // change after deployment
+    const res = await fetch("http://127.0.0.1:8000/api/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

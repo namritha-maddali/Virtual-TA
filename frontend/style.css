@@ -20,17 +20,28 @@ h2 {
     font-family: Consolas, monospace;
 }
 
-.subheading {
+#subheading {
     color: #666;
     font-size: 0.95rem;
     margin-bottom: 20px;
     font-family: Consolas, monospace;
 }
 
+.disclaimer {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.content {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
 textarea, input[type="file"] {
     width: 100%;
     padding: 12px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 10px 0 20px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -60,13 +71,28 @@ button:hover {
     background-color: #1a252f;
 }
 
+.center-text {
+    text-align: center;
+}
+
 #response {
     margin-top: 30px;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #333;
     font-family: Consolas, monospace;
 }
 
 #response ul {
     padding-left: 20px;
+}
+
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-size: 0.85rem;
+    color: rgba(44, 62, 80, 0.3);  /* subtle, elegant */
+    font-family: Consolas, monospace;
+    user-select: none;
+    pointer-events: none;
 }
