@@ -1,4 +1,4 @@
-## Tadashi 🤖, the Virtual TDS TA ✨
+# Tadashi 🤖, the Virtual TDS TA ✨
 
 T for Tadashi, T for TDS!
 
@@ -14,7 +14,7 @@ How to ask Tadashi questions:
 - Click on Get Answer! (soo ez ~)
 
 
-A few examples: 
+## A few examples: 
 A question without any images - 
 ![image](https://github.com/user-attachments/assets/47dcc0c2-d5d6-4981-9191-83f89ac61c55)
 
