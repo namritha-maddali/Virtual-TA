@@ -1,31 +1,68 @@
-# Meet Tadashi, the Virtual TDS TA 🤖🎓
+# 🤖 Meet Tadashi – Your Virtual TDS TA
 
-T for TDS, T for Tadashi!
+> T for TDS, T for Tadashi!
 
-Got doubts regarding TDS? Why fear when Tadashi is here! 🎀
-(Is this a Big Hero 6 reference? Or is it an Iron Man reference? We'll never know :P)
+Have questions about the **Tools in Data Science (TDS)** course from IITM?
+Tadashi is here to help you out, accurately and efficiently!
 
-Tadashi uses the official TDS website and the content from the Discourse posts with the tag "tds" to answer your questions, which he does in a concise and digestable way along with some links to the relevant content to give you some more insights!
+_is this a Big Hero 6 reference, or is it an Iron Man referece? we'll never know ;)_
 
-### **Chat with him here: https://nomri-tadashi-tds-ta.hf.space/static/**
+---
 
-(he is hosted on free tier of huggingface spaces. so, if the space has become inactive, it may take a minute or two to start.)
+## Who is Tadashi? 🤔
 
-How to ask Tadashi questions:
-- Enter your question in the text area
-- Attach an image if required
-- Click on Get Answer! (soo ez ~)
+**Tadashi** is a virtual teaching assistant that answers your queries related to the **TDS course**.
+It uses content from:
 
+* The official [TDS website](https://tds.s-anand.net/#/)
+* [Discourse forum](https://discourse.onlinedegree.iitm.ac.in/c/courses/tds-kb/34) posts tagged with `tds`
 
-## A few examples: 
-A question without any images - 
+---
 
-![image](https://github.com/user-attachments/assets/47dcc0c2-d5d6-4981-9191-83f89ac61c55)
+## Try it out here:
 
+🔗 [https://nomri-tadashi-tds-ta.hf.space/static/](https://nomri-tadashi-tds-ta.hf.space/static/)
 
-A question along with an image - 
+> *(Note: The app is hosted on the free tier of Hugging Face Spaces. If inactive, it may take a minute or two to load.)*
 
-![image](https://github.com/user-attachments/assets/640a2297-3e39-4c17-bd85-f2aa70fdab10)
+---
 
+## How to Use Tadashi 👨🏻‍💻
 
-_Disclaimer: his data is limited to the Jan'25 term_
+1. Type your question in the text box (make sure the question is not vague)
+2. (Optional) Upload an image if your question involves a screenshot or visual
+3. Click **Get Answer**
+4. Receive a helpful response, along with relevant links in a matter of seconds!
+
+---
+
+## Example Use Cases
+
+**Without Image:**
+
+![Text-only question example](https://github.com/user-attachments/assets/47dcc0c2-d5d6-4981-9191-83f89ac61c55)
+
+---
+
+**With Image:**
+
+![Question with image example](https://github.com/user-attachments/assets/640a2297-3e39-4c17-bd85-f2aa70fdab10)
+
+---
+
+### ⚠️ Disclaimer
+
+Tadashi’s knowledge is limited to content from the **January 2025 term**.
+
+---
+
+## Behind the Scenes
+
+Tadashi is powered by:
+
+* A **multimodal pipeline** for text and image inputs
+* A **retrieval-augmented generation (RAG)** backend
+* Scraped and indexed content from official TDS sources
+* Hosted on Hugging Face Spaces using the free tier.
+
+---
